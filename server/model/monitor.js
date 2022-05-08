@@ -773,9 +773,10 @@ class Monitor extends BeanModel {
         // DOWN -> DOWN = not important
         // * DOWN -> UP = important
         let isImportant = isFirstBeat ||
+            (previousBeatStatus === UP && currentBeatStatus === UP) ||
+            (previousBeatStatus === DOWN && currentBeatStatus === DOWN) ||
             (previousBeatStatus === UP && currentBeatStatus === DOWN) ||
-            (previousBeatStatus === DOWN && currentBeatStatus === UP) ||
-            (previousBeatStatus === PENDING && currentBeatStatus === DOWN);
+            (previousBeatStatus === DOWN && currentBeatStatus === UP);
         return isImportant;
     }
 
